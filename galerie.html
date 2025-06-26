@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Bisherige Projekte</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f8e9;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h1 {
+      color: #2e7d32;
+      text-align: center;
+    }
+
+    .upload {
+      text-align: center;
+      margin: 20px 0 40px 0;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .gallery img {
+      max-width: 250px;
+      max-height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .back {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .back a {
+      color: #388e3c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back">
+    <a href="index.html">← Zurück zur Startseite</a>
+  </div>
+
+  <h1>Bisherige Projekte</h1>
+
+  <div class="upload">
+    <p>Lade hier deine Bilder hoch :</p>
+    <input type="file" accept="image/*" id="imageInput" multiple />
+  </div>
+
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    const input = document.getElementById('imageInput');
+    const gallery = document.getElementById('gallery');
+
+    input.addEventListener('change', () => {
+      const files = input.files;
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          gallery.appendChild(img);
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    });
+  </script>
+
+</body>
+</html>
